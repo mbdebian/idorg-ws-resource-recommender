@@ -12,5 +12,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Another try")
+	fmt.Println("Another try with greeting - " + myGreet)
 }
