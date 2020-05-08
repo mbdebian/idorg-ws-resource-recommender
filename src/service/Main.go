@@ -7,7 +7,8 @@
 package main
 
 import (
-	"fmt"
+	"fmt",
+	"greet"
 )
 
 func main() {
