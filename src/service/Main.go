@@ -20,6 +20,10 @@ func main() {
 		writer.WriteHeader(http.StatusOK)
 		writer.Write([]byte("Hello to everybody"))
 	})
+
+	// Custom Server
+
+	// Start the server
 	err := http.ListenAndServe(":8080", mux)
 	if err != nil {
 		log.Fatal("Server failed to start")
