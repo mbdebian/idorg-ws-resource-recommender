@@ -18,4 +18,5 @@ func main() {
 	mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
 		writer.Write([]byte("Hello to everybody"))
 	})
+	http.ListenAndServe(":8080", mux)
 }
