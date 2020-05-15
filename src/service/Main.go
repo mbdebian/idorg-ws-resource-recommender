@@ -7,18 +7,21 @@
 package main
 
 import (
-	"fmt"
 	"greet"
+	"log"
 	"net/http"
 )
 
 func main() {
-	fmt.Println("Another try with greeting - " + greet.MyGreet)
+	log.Println("Another try with greeting - " + greet.MyGreet)
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
 		writer.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		writer.WriteHeader(http.StatusOK)
 		writer.Write([]byte("Hello to everybody"))
 	})
-	http.ListenAndServe(":8080", mux)
+	err := http.ListenAndServe(":8080", mux)
+	if err != nil {
+		log.Fatal("Server failed to start")
+	}
 }
