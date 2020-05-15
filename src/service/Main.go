@@ -10,8 +10,21 @@ import (
 	"greet"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
+
+var (
+	serverPort = getEnvDefault("IDORG_RESOURCE_RECOMMENDER_CONFIG_SERVER_PORT", ":8080")
+)
+
+
+func getEnvDefault(key, defValue string) string {
+	if value, ok := os.LookupEnv(key); ok {
+		return value
+	}
+	return defValue
+}
 
 func main() {
 	log.Println("Another try with greeting - " + greet.MyGreet)
@@ -24,7 +37,7 @@ func main() {
 
 	// Custom Server
 	srv := &http.Server{
-		Addr:              ":8080",
+		Addr:              serverPort,
 		Handler:           mux,
 		ReadTimeout:       5 * time.Second,
 		WriteTimeout:      10 * time.Second,
