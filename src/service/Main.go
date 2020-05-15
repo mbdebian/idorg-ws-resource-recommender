@@ -16,6 +16,7 @@ func main() {
 	fmt.Println("Another try with greeting - " + greet.MyGreet)
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
+		writer.WriteHeader(http.StatusOK)
 		writer.Write([]byte("Hello to everybody"))
 	})
 	http.ListenAndServe(":8080", mux)
