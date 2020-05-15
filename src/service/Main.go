@@ -9,8 +9,13 @@ package main
 import (
 	"fmt"
 	"greet"
+	"net/http"
 )
 
 func main() {
 	fmt.Println("Another try with greeting - " + greet.MyGreet)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
+		writer.Write([]byte("Hello to everybody"))
+	})
 }
