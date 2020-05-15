@@ -10,6 +10,7 @@ import (
 	"greet"
 	"log"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -22,9 +23,16 @@ func main() {
 	})
 
 	// Custom Server
+	srv := &http.Server{
+		Addr:              ":8080",
+		Handler:           mux,
+		ReadTimeout:       5 * time.Second,
+		WriteTimeout:      10 * time.Second,
+		IdleTimeout:       120 * time.Second,
+	}
 
 	// Start the server
-	err := http.ListenAndServe(":8080", mux)
+	err := srv.ListenAndServe()
 	if err != nil {
 		log.Fatal("Server failed to start")
 	}
