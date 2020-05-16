@@ -37,7 +37,7 @@ func main() {
 
 	srv := newServer(mux, serverPort)
 
-	// Start the server
+	// Start the server (HTTP)
 	err := srv.ListenAndServe()
 	if err != nil {
 		log.Fatalf("Server failed to start - '%s'", err)
