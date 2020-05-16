@@ -35,18 +35,23 @@ func main() {
 		writer.Write([]byte("Hello to everybody"))
 	})
 
-	// Custom Server
-	srv := &http.Server{
-		Addr:              ":" + serverPort,
-		Handler:           mux,
-		ReadTimeout:       5 * time.Second,
-		WriteTimeout:      10 * time.Second,
-		IdleTimeout:       120 * time.Second,
-	}
+	srv := newServer(mux, serverPort)
 
 	// Start the server
 	err := srv.ListenAndServe()
 	if err != nil {
 		log.Fatalf("Server failed to start - '%s'", err)
 	}
+}
+
+func newServer(mux *http.ServeMux, serverPort string) *http.Server {
+	// Custom Server
+	srv := &http.Server{
+		Addr:         ":" + serverPort,
+		Handler:      mux,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  120 * time.Second,
+	}
+	return srv
 }
