@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	serverPort = getEnvDefault("IDORG_RESOURCE_RECOMMENDER_CONFIG_SERVER_PORT", ":8080")
+	serverPort = getEnvDefault("IDORG_RESOURCE_RECOMMENDER_CONFIG_SERVER_PORT", "8080")
 )
 
 // Env helper
