@@ -18,7 +18,7 @@ var (
 	serverPort = getEnvDefault("IDORG_RESOURCE_RECOMMENDER_CONFIG_SERVER_PORT", ":8080")
 )
 
-
+// Env helper
 func getEnvDefault(key, defValue string) string {
 	if value, ok := os.LookupEnv(key); ok {
 		return value
@@ -37,7 +37,7 @@ func main() {
 
 	// Custom Server
 	srv := &http.Server{
-		Addr:              serverPort,
+		Addr:              ":" + serverPort,
 		Handler:           mux,
 		ReadTimeout:       5 * time.Second,
 		WriteTimeout:      10 * time.Second,
@@ -47,6 +47,6 @@ func main() {
 	// Start the server
 	err := srv.ListenAndServe()
 	if err != nil {
-		log.Fatal("Server failed to start")
+		log.Fatalf("Server failed to start - '%s'", err)
 	}
 }
