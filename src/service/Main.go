@@ -15,7 +15,8 @@ import (
 )
 
 var (
-	serverPort = getEnvDefault("IDORG_RESOURCE_RECOMMENDER_CONFIG_SERVER_PORT", "8080")
+	configServerPort = getEnvDefault("IDORG_RESOURCE_RECOMMENDER_CONFIG_SERVER_PORT", "8080")
+
 )
 
 // Env helper
@@ -35,7 +36,7 @@ func main() {
 		writer.Write([]byte("Hello to everybody"))
 	})
 
-	srv := newServer(mux, serverPort)
+	srv := newServer(mux, configServerPort)
 
 	// Start the server (HTTP)
 	err := srv.ListenAndServe()
