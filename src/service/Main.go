@@ -16,7 +16,7 @@ import (
 
 var (
 	configServerPort = getEnvDefault("IDORG_RESOURCE_RECOMMENDER_CONFIG_SERVER_PORT", "8080")
-
+	configLinkCheckerHost = getEnvDefault("IDORG_RESOURCE_RECOMMENDER_CONFIG_BACKEND_SERVICE_LINK_CHECKER_HOST", "localhost")
 )
 
 // Env helper
