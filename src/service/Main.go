@@ -7,11 +7,11 @@
 package main
 
 import (
+	"api/health"
 	"log"
 	"net/http"
 	"os"
 	"server"
-	"api/health"
 )
 
 var (

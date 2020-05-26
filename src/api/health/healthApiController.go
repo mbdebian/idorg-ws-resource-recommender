@@ -38,8 +38,8 @@ func (handlerContext *HandlerContext) readinessCheck(writer http.ResponseWriter,
 
 // --- Routing ---
 func (handlerContext *HandlerContext) SetupRoutes(mux *http.ServeMux) {
-	mux.HandleFunc(fmt.Sprintf("%s/liveness_check", apiPrefix), handlerContext.livenessCheck)
-	mux.HandleFunc(fmt.Sprintf("%s/readiness_check", apiPrefix), handlerContext.readinessCheck)
+	mux.HandleFunc(fmt.Sprintf("/%s/liveness_check", apiPrefix), handlerContext.livenessCheck)
+	mux.HandleFunc(fmt.Sprintf("/%s/readiness_check", apiPrefix), handlerContext.readinessCheck)
 }
 
 // --- Constructor ---
