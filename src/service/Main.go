@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"os"
 	"server"
+	"api/health"
 )
 
 var (
@@ -28,15 +29,17 @@ func getEnvDefault(key, defValue string) string {
 }
 
 func main() {
+	// Create service logger
 	logger := log.New(os.Stdout, "[IDORG_RESOURCE_RECOMMENDER] ", log.LstdFlags | log.Lshortfile)
-	logger.Println("[START] identifiers.org Resource Recommender Service")
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
-		writer.Header().Set("Content-Type", "text/plain; charset=utf-8")
-		writer.WriteHeader(http.StatusOK)
-		writer.Write([]byte("Hello to everybody"))
-	})
 
+	// Bootstrap
+	logger.Println("[BOOTSTRAP] identifiers.org Resource Recommender Service")
+	mux := http.NewServeMux()
+	// APIs SETUP
+	health.NewApiHandler(logger).SetupRoutes(mux)
+	logger.Println("[BOOTSTRAP] APIs registration completed")
+	// Start the Server
+	logger.Printf("[BOOTSTRAP] Service LISTENING on port %s\n", configServerPort)
 	srv := server.New(mux, configServerPort)
 
 	// Start the server (HTTP)
