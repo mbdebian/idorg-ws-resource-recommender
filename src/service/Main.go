@@ -28,6 +28,8 @@ func getEnvDefault(key, defValue string) string {
 }
 
 func main() {
+	logger := log.New(os.Stdout, "[IDORG_RESOURCE_RECOMMENDER] ", log.LstdFlags | log.Lshortfile)
+	logger.Println("[START] identifiers.org Resource Recommender Service")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
 		writer.Header().Set("Content-Type", "text/plain; charset=utf-8")
@@ -40,6 +42,6 @@ func main() {
 	// Start the server (HTTP)
 	err := srv.ListenAndServe()
 	if err != nil {
-		log.Fatalf("Server failed to start - '%s'", err)
+		logger.Fatalf("Server failed to start - '%s'", err)
 	}
 }
