@@ -25,14 +25,19 @@ func (handlerContext *HandlerContext) livenessCheck(writer http.ResponseWriter, 
 	// TODO
 	writer.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	writer.WriteHeader(http.StatusOK)
-	writer.Write([]byte("liveness check endpoint"))
+	//writer.Write([]byte("liveness check endpoint"))
+	response := NewApiModel(handlerContext.logger).LivenessCheck(r)
+	writer.Write([]byte(response))
 }
 
 func (handlerContext *HandlerContext) readinessCheck(writer http.ResponseWriter, r *http.Request) {
 	// TODO
 	writer.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	writer.WriteHeader(http.StatusOK)
-	writer.Write([]byte("readiness check endpoint"))
+	//writer.Write([]byte("readiness check endpoint"))
+	response := NewApiModel(handlerContext.logger).ReadinessCheck(r)
+	writer.Write([]byte(response))
+
 }
 // END --- API
 
