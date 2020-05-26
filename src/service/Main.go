@@ -11,7 +11,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"time"
+	"server"
 )
 
 var (
@@ -37,7 +37,7 @@ func main() {
 		writer.Write([]byte("Hello to everybody"))
 	})
 
-	srv := newServer(mux, configServerPort)
+	srv := server.New(mux, configServerPort)
 
 	// Start the server (HTTP)
 	err := srv.ListenAndServe()
