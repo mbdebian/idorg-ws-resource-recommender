@@ -1,3 +1,9 @@
+GET http://localhost:8083/healthApi/readiness_check
+
+###
+GET http://localhost:8083/healthApi/liveness_check
+
+###
 GET http://localhost:8083
 
 ###
